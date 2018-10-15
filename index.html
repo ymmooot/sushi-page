@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sushi</title>
+</head>
+
+<body>
+    <ul id="sushi">
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+        <li>🍣</li>
+    </ul>
+    <style>
+        :root {
+            --duration: 5s;
+            --total: 35;
+        }
+
+        #sushi {
+            position: relative;
+            width: 500px;
+            height: 30px;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        #sushi>li {
+            width: 16px;
+            position: absolute;
+            animation: slide var(--duration) linear 0s infinite;
+            list-style: none;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(calc(var(--total) * -100%));
+                visibility: hidden;
+            }
+
+            51% {
+                transform: translateX(calc(var(--total) * 100%));
+                visibility: hidden;
+            }
+
+            52% {
+                transform: translateX(calc(var(--total) * 100%));
+                visibility: visible;
+            }
+        }
+
+        #sushi>li:nth-of-type(1) {
+            animation-delay: calc((0 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(2) {
+            animation-delay: calc((1 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(3) {
+            animation-delay: calc((2 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(4) {
+            animation-delay: calc((3 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(5) {
+            animation-delay: calc((4 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(6) {
+            animation-delay: calc((5 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(7) {
+            animation-delay: calc((6 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(8) {
+            animation-delay: calc((7 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(9) {
+            animation-delay: calc((8 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(10) {
+            animation-delay: calc((9 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(11) {
+            animation-delay: calc((10 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(12) {
+            animation-delay: calc((11 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(13) {
+            animation-delay: calc((12 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(14) {
+            animation-delay: calc((13 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(15) {
+            animation-delay: calc((14 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(16) {
+            animation-delay: calc((15 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(17) {
+            animation-delay: calc((16 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(18) {
+            animation-delay: calc((17 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(19) {
+            animation-delay: calc((18 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(20) {
+            animation-delay: calc((19 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(21) {
+            animation-delay: calc((20 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(22) {
+            animation-delay: calc((21 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(23) {
+            animation-delay: calc((22 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(24) {
+            animation-delay: calc((23 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(25) {
+            animation-delay: calc((24 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(26) {
+            animation-delay: calc((25 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(27) {
+            animation-delay: calc((26 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(28) {
+            animation-delay: calc((27 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(29) {
+            animation-delay: calc((28 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(30) {
+            animation-delay: calc((29 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(31) {
+            animation-delay: calc((30 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(32) {
+            animation-delay: calc((31 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(33) {
+            animation-delay: calc((32 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(34) {
+            animation-delay: calc((33 - var(--total)) * (var(--duration) / var(--total)));
+        }
+
+        #sushi>li:nth-of-type(35) {
+            animation-delay: calc((34 - var(--total)) * (var(--duration) / var(--total)));
+        }
+    </style>
+</body>
+
+</html>
