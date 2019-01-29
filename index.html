@@ -14,20 +14,17 @@
   <script>
     const main = () => {
       const app = document.querySelector('#app')
-      const options = getOptions(window)
+      const options = getOptions(window.location.search)
       const painter = new SushiPainter(window, app, options)
 
       painter.paint()
-      window.onresize = () => {
-        painter.resize()
-        painter.paint()
-      }
+      window.onresize = () => painter.resize()
     }
 
     const isNumberString = string => /^([1-9]\d*|0)(\.\d+)?$/.test(string)
 
-    const getOptions = window => {
-      const [_, queryString] = window.location.search.split('?')
+    const getOptions = search => {
+      const [_, queryString] = search.split('?')
       const params = new URLSearchParams(queryString)
 
       const isValidSpeed = isNumberString(params.get('speed')) && parseFloat(params.get('speed'), 10) > 0
@@ -76,6 +73,7 @@
       resize() {
         this.count = this.computeSushiCount(this.window)
         this.duration = this.computeDuration(this.count, this.options.speed)
+        this.paint()
       }
 
       computeSushiCount(window) {
