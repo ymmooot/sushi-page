@@ -12,49 +12,113 @@
   <ul id="app"></ul>
 
   <script>
-    const main = app => {
-      clearApp(app)
-      const sushiCount = computeSushiCount()
-      const sushiDuration = computeDuration(sushiCount)
-      setCssAnimationVars(app, sushiDuration, sushiCount)
-      insertSushis(app, sushiCount, createSushi)
-    }
+    const main = () => {
+      const app = document.querySelector('#app')
+      const options = getOptions(window)
+      const painter = new SushiPainter(window, app, options)
 
-    const clearApp = app => {
-      while (app.firstChild) {
-        app.removeChild(app.firstChild);
+      painter.paint()
+      window.onresize = () => {
+        painter.resize()
+        painter.paint()
       }
     }
 
-    const createSushi = index => {
-      const sushi = document.createElement('li')
-      sushi.innerText = '🍣'
-      sushi.style.animationDelay = `calc((${index} - var(--total)) * (var(--duration) / var(--total)))`;
-      return sushi
+    const isNumberString = string => /^([1-9]\d*|0)(\.\d+)?$/.test(string)
+
+    const getOptions = window => {
+      const [_, queryString] = window.location.search.split('?')
+      const params = new URLSearchParams(queryString)
+
+      const isValidSpeed = isNumberString(params.get('speed')) && parseFloat(params.get('speed'), 10) > 0
+      if (!isValidSpeed) {
+        console.error(`speed '${params.get('speed')}' is invalid value. It must be a positive number bigger than 0`)
+      }
+
+      const options = {
+        speed: isValidSpeed ? parseFloat(params.get('speed'), 10) : null,
+        color: params.get('color') || null,
+      }
+
+      return Object.entries(options)
+        .filter(([_k, v]) => v !== null)
+        .reduce((acc, [k, v]) => ({
+          ...acc,
+          [k]: v,
+        }), {})
     }
 
-    const computeSushiCount = () => {
-      const windowWidth = window.innerWidth
-      const sushiWidth = 15.5
-      return Math.floor(windowWidth / sushiWidth)
+    class SushiPainter {
+      constructor(window, app, options) {
+        const defaultOptions = {
+          speed: 1,
+          color: '#fff',
+        }
+        this.options = {
+          ...defaultOptions,
+          ...options,
+        }
+
+        console.info('setting:', this.options)
+
+        this.window = window
+        this.app = app
+        this.count = this.computeSushiCount(this.window)
+        this.duration = this.computeDuration(this.count, this.options.speed)
+
+
+        this.init()
+      }
+
+      init() {
+        app.style.setProperty('--background-color', this.options.color)
+      }
+
+      resize() {
+        this.count = this.computeSushiCount(this.window)
+        this.duration = this.computeDuration(this.count, this.options.speed)
+      }
+
+      computeSushiCount(window) {
+        const windowWidth = window.innerWidth
+        const sushiWidth = 15.5
+        return Math.floor(windowWidth / sushiWidth)
+      }
+
+      computeDuration(count, speed) {
+        return `${Math.floor(count / (5 * speed))}s`
+      }
+
+      paint() {
+        this.clearApp(this.app)
+        this.setCssAnimationVars()
+        this.insertSushis()
+      }
+
+      clearApp() {
+        while (this.app.firstChild) {
+          this.app.removeChild(this.app.firstChild);
+        }
+      }
+
+      setCssAnimationVars() {
+        this.app.style.setProperty('--duration', this.duration)
+        this.app.style.setProperty('--total', this.count)
+      }
+
+      insertSushis() {
+        const sushis = [...Array(this.count).keys()].map(this.createSushi)
+        sushis.forEach(sushi => this.app.appendChild(sushi))
+      }
+
+      createSushi(index) {
+        const sushi = document.createElement('li')
+        sushi.innerText = '🍣'
+        sushi.style.animationDelay = `calc((${index} - var(--total)) * (var(--duration) / var(--total)))`;
+        return sushi
+      }
     }
-
-    const computeDuration = count => `${Math.floor(count / 5)}s`
-
-    const setCssAnimationVars = (app, duration, total) => {
-      app.style.setProperty('--duration', duration)
-      app.style.setProperty('--total', total)
-    }
-
-    const insertSushis = (app, count, createSushi) => {
-      const sushis = [...Array(count).keys()].map(createSushi)
-      sushis.forEach(sushi => app.appendChild(sushi))
-    }
-
-    const app = document.querySelector('#app')
-    main(app)
-
-    window.onresize = () => main(app)
+    main()
   </script>
 
   <style>
@@ -62,15 +126,17 @@
       margin: 0;
       padding: 0;
       width: 100%;
+      height: 100%;
       overflow: hidden;
     }
 
     #app {
+      --background-color: '#fff';
       --duration: 0s;
       --total: 0;
 
       position: relative;
-      height: 30px;
+      background-color: var(--background-color);
     }
 
     #app > li {
