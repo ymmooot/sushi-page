@@ -31,7 +31,7 @@
       const params = new URLSearchParams(queryString)
 
       const isValidSpeed = isNumberString(params.get('speed')) && parseFloat(params.get('speed'), 10) > 0
-      if (!isValidSpeed) {
+      if (params.has('speed') && !isValidSpeed) {
         console.error(`speed '${params.get('speed')}' is invalid value. It must be a positive number bigger than 0`)
       }
 
@@ -65,7 +65,6 @@
         this.app = app
         this.count = this.computeSushiCount(this.window)
         this.duration = this.computeDuration(this.count, this.options.speed)
-
 
         this.init()
       }
