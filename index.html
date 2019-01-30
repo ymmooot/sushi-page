@@ -87,7 +87,7 @@
       }
 
       paint() {
-        this.clearApp(this.app)
+        this.clearApp()
         this.setCssAnimationVars()
         this.insertSushis()
       }
@@ -105,7 +105,9 @@
 
       insertSushis() {
         const sushis = [...Array(this.count).keys()].map(this.createSushi)
-        sushis.forEach(sushi => this.app.appendChild(sushi))
+        const fragment = document.createDocumentFragment();
+        sushis.forEach(sushi => fragment.appendChild(sushi))
+        this.app.appendChild(fragment);
       }
 
       createSushi(index) {
