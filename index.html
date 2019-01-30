@@ -60,6 +60,8 @@
 
         this.window = window
         this.app = app
+        this.parent = app.parentNode
+        this.appClone = app.cloneNode();
         this.count = this.computeSushiCount(this.window)
         this.duration = this.computeDuration(this.count, this.options.speed)
 
@@ -67,7 +69,7 @@
       }
 
       init() {
-        app.style.setProperty('--background-color', this.options.color)
+        this.app.style.setProperty('--background-color', this.options.color)
       }
 
       resize() {
@@ -93,9 +95,9 @@
       }
 
       clearApp() {
-        while (this.app.firstChild) {
-          this.app.removeChild(this.app.firstChild);
-        }
+        this.parent.removeChild(this.app)
+        this.app = this.appClone.cloneNode()
+        this.parent.appendChild(this.app)
       }
 
       setCssAnimationVars() {
