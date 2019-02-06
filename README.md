@@ -2,7 +2,7 @@
 
 ## URL
 
-https://ryota-yamamoto.github.io/sushi-page/
+https://ymmooot.github.io/sushi-page/
 
 ## Options
 
