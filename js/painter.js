@@ -1,4 +1,4 @@
-import sushiConsole from './sushiConsole.js'
+import { sushiText, sushiCss } from './sushiConsole.js'
 
 class SushiPainter {
   constructor(window, paintElement, console, options = {}) {
@@ -48,7 +48,7 @@ class SushiPainter {
 
   paintConsole() {
     this.console.log('%c YEAH! You got console.sushi() ', 'color: #000; background-color: #eee; font-weight:bold; line-height: 10px; padding: 20px 0;');
-    this.console.log('%c       ', sushiConsole);
+    this.console.log(sushiText, sushiCss);
   }
 
   clearApp() {
