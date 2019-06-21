@@ -1,5 +1,3 @@
-import { sushiText, sushiCss } from './sushiConsole.js'
-
 class SushiPainter {
   constructor(window, paintElement, console, options = {}) {
     const defaultOptions = {
@@ -44,11 +42,6 @@ class SushiPainter {
     this.clearApp(this.app)
     this.setCssAnimationVars()
     this.insertSushis()
-  }
-
-  paintConsole() {
-    this.console.log('%c YEAH! You got console.sushi() ', 'color: #000; background-color: #eee; font-weight:bold; line-height: 10px; padding: 20px 0;');
-    this.console.log(sushiText, sushiCss);
   }
 
   clearApp() {

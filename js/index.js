@@ -7,7 +7,6 @@ const main = () => {
   const painter = new SushiPainter(window, app, console, options)
 
   painter.paint()
-  painter.paintConsole()
   window.onresize = () => painter.resize()
 }
 main()
